@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern & Sleek Login Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg-color-start: #0a0a0a;
+      --bg-color-end: #1a1a1a;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.15);
+      --accent-color: #6a82fb; /* A vibrant blue */
+      --secondary-accent: #2e6097;
+      --text-color: #f0f0f0;
+      --label-color: #b0b0b0;
+      --input-bg: rgba(255, 255, 255, 0.05);
+      --input-border: rgba(255, 255, 255, 0.2);
+      --error-color: #ff6b6b;
+      --shadow-primary: 0 10px 30px rgba(0, 0, 0, 0.4);
+      --shadow-secondary: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg-color-start), var(--bg-color-end));
+      color: var(--text-color);
+      padding: 20px;
+    }
+
+    .login-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: var(--shadow-primary);
+      width: 100%;
+      max-width: 450px;
+      padding: 40px;
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-container:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-secondary);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .logo i {
+      font-size: 56px;
+      color: var(--accent-color);
+      text-shadow: 0 0 15px rgba(106, 130, 251, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .logo i:hover {
+      color: var(--secondary-accent);
+      text-shadow: 0 0 20px rgba(46, 96, 151, 0.8);
+    }
+
+    .logo h1 {
+      margin-top: 15px;
+      font-weight: 700;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .input-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--label-color);
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 15px 45px 15px 15px; /* Added right padding for icon */
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      font-size: 15px;
+      color: var(--text-color);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+    }
+    
+    .input-group input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(106, 130, 251, 0.25);
+    }
+
+    .input-group input::placeholder {
+      color: #777;
+    }
+
+    .input-group input.error {
+      border-color: var(--error-color);
+      box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.25);
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+
+    .input-group .error-message {
+      color: var(--error-color);
+      font-size: 12px;
+      margin-top: 8px;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+    }
+
+    .input-group.has-error .error-message {
+      opacity: 1;
+      max-height: 50px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(18px);
+      background: none;
+      border: none;
+      color: var(--label-color);
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.2s ease;
+      padding: 5px;
+    }
+
+    .password-toggle:hover {
+      color: var(--accent-color);
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: var(--label-color);
+    }
+
+    .remember input {
+      accent-color: var(--accent-color);
+      margin-right: 8px;
+    }
+
+    .forgot-link {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .forgot-link:hover {
+      color: var(--secondary-accent);
+      text-decoration: underline;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(106, 130, 251, 0.4);
+    }
+    
+    .login-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(106, 130, 251, 0.6);
+    }
+
+    .login-button:disabled {
+      background: #333;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 14px;
+      color: var(--label-color);
+    }
+
+    .signup-link a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+      color: var(--secondary-accent);
+    }
+
+    #status-message {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      height: 20px; /* Reserve space */
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    #status-message.success {
+      color: #4CAF50; /* Green color for success */
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #status-message.error {
+      color: var(--error-color);
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px;
+      }
+      .logo h1 {
+        font-size: 1.8rem;
+      }
+      .remember-forgot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <i class="fas fa-user-circle"></i>
+      <h1>Login</h1>
+    </div>
+
+    <form id="loginForm">
+      <div class="input-group" id="username-group">
+        <label for="name">Username</label>
+        <input type="text" id="name" name="name" placeholder="Enter your username" autocomplete="username"/>
+        <div id="username-error" class="error-message" aria-live="polite">Username must be 4-16 characters long.</div>
+      </div>
+
+      <div class="input-group" id="password-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password"/>
+        <button type="button" class="password-toggle" id="passwordToggle" aria-label="Show password">
+          <i class="far fa-eye"></i>
+        </button>
+        <div id="password-error" class="error-message" aria-live="polite">Password must be 8-20 characters long and contain a number.</div>
+      </div>
+
+      <div class="remember-forgot">
+        <div class="remember">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Remember me</label>
+        </div>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="login-button">Login</button>
+
+      <div id="status-message"></div>
+
+      <div class="signup-link">
+        Don't have an account? <a href="#">Sign up</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loginForm = document.getElementById("loginForm");
+      const usernameInput = document.getElementById("name");
+      const passwordInput = document.getElementById("password");
+      const passwordToggle = document.getElementById("passwordToggle");
+      const statusMessage = document.getElementById("status-message");
+
+      // Password visibility toggle
+      passwordToggle.addEventListener("click", function () {
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+        this.querySelector("i").classList.toggle("fa-eye");
+        this.querySelector("i").classList.toggle("fa-eye-slash");
+        this.setAttribute("aria-label", type === "password" ? "Show password" : "Hide password");
+      });
+
+      // Live validation on input
+      const validateInput = (input, regex, min, max, errorMessage, errorGroup) => {
+        const value = input.value.trim();
+        const isValid = value.length >= min && value.length <= max && regex.test(value);
+        
+        if (isValid) {
+          errorGroup.classList.remove("has-error");
+        } else {
+          errorGroup.classList.add("has-error");
+        }
+        return isValid;
+      };
+
+      const usernameRegex = /^[a-zA-Z0-9_.-]{4,16}$/;
+      const passwordRegex = /^(?=.*[0-9]).{8,20}$/;
+
+      usernameInput.addEventListener("input", () => {
+        validateInput(usernameInput, usernameRegex, 4, 16, "", document.getElementById("username-group"));
+      });
+      passwordInput.addEventListener("input", () => {
+        validateInput(passwordInput, passwordRegex, 8, 20, "", document.getElementById("password-group"));
+      });
+
+      // Form submission handler
+      loginForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const isUsernameValid = validateInput(usernameInput, usernameRegex, 4, 16, "", document.getElementById("username-group"));
+        const isPasswordValid = validateInput(passwordInput, passwordRegex, 8, 20, "", document.getElementById("password-group"));
+        
+        if (!isUsernameValid || !isPasswordValid) {
+          statusMessage.textContent = "Please correct the errors above.";
+          statusMessage.className = "error";
+          return;
+        }
+
+        const loginButton = loginForm.querySelector(".login-button");
+        loginButton.textContent = "Logging in...";
+        loginButton.disabled = true;
+        statusMessage.textContent = "";
+
+        // Simulate a network request
+        try {
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          // Assuming a successful login for this demo
+          statusMessage.textContent = "Login successful! Redirecting...";
+          statusMessage.className = "success";
+          loginForm.reset();
+        } catch (error) {
+          // In a real application, handle specific API errors here
+          statusMessage.textContent = "Login failed. Please check your credentials.";
+          statusMessage.className = "error";
+        } finally {
+          loginButton.textContent = "Login";
+          loginButton.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

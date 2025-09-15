@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .login-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo i {
+            font-size: 42px;
+            color: #6e8efb;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo h1 {
+            margin-top: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 28px;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            border-color: #6e8efb;
+            box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.2);
+            outline: none;
+        }
+        
+        .input-group input.error {
+            border-color: #ff4757;
+        }
+        
+        .input-group .error-message {
+            color: #ff4757;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .input-group input.error + .error-message {
+            display: block;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            color: #777;
+            cursor: pointer;
+        }
+        
+        .password-toggle:hover {
+            color: #333;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember input {
+            margin-right: 8px;
+            accent-color: #6e8efb;
+        }
+        
+        .forgot-link {
+            color: #6e8efb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .forgot-link:hover {
+            color: #a777e3;
+            text-decoration: underline;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(110, 142, 251, 0.4);
+        }
+        
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(110, 142, 251, 0.5);
+        }
+        
+        .login-button:active {
+            transform: translateY(0);
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .signup-link a {
+            color: #6e8efb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px;
+            }
+            
+            .remember-forgot {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <i class="fas fa-user-lock"></i>
+            <h1>Account Login</h1>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="name">Username</label>
+                <input type="text" id="name" name="name" required minlength="4" maxlength="8" placeholder="Enter your username">
+                <div class="error-message">Username must be 4-8 characters long</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required minlength="4" maxlength="8" placeholder="Enter your password">
+                <span class="password-toggle" id="passwordToggle">
+                    <i class="far fa-eye"></i>
+                </span>
+                <div class="error-message">Password must be 4-8 characters long</div>
+            </div>
+            
+            <div class="remember-forgot">
+                <div class="remember">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#" class="forgot-link">Forgot your password?</a>
+            </div>
+            
+            <button type="submit" class="login-button">Login</button>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const passwordInput = document.getElementById('password');
+            const passwordToggle = document.getElementById('passwordToggle');
+            const passwordIcon = passwordToggle.querySelector('i');
+            
+            // Toggle password visibility
+            passwordToggle.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    passwordIcon.classList.remove('fa-eye');
+                    passwordIcon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    passwordIcon.classList.remove('fa-eye-slash');
+                    passwordIcon.classList.add('fa-eye');
+                }
+            });
+            
+            // Form validation
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('name');
+                const password = document.getElementById('password');
+                let isValid = true;
+                
+                // Validate username
+                if (username.value.length < 4 || username.value.length > 8) {
+                    username.classList.add('error');
+                    isValid = false;
+                } else {
+                    username.classList.remove('error');
+                }
+                
+                // Validate password
+                if (password.value.length < 4 || password.value.length > 8) {
+                    password.classList.add('error');
+                    isValid = false;
+                } else {
+                    password.classList.remove('error');
+                }
+                
+                if (isValid) {
+                    // Simulate successful login
+                    loginForm.querySelector('.login-button').textContent = 'Logging in...';
+                    
+                    setTimeout(function() {
+                        alert('Login successful!');
+                        loginForm.querySelector('.login-button').textContent = 'Login';
+                    }, 1500);
+                }
+            });
+            
+            // Real-time validation
+            const inputs = document.querySelectorAll('input[type="text"], input[type="password"]');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.length >= 4 && this.value.length <= 8) {
+                        this.classList.remove('error');
+                    } else {
+                        this.classList.add('error');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
